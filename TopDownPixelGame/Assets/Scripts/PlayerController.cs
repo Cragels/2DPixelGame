@@ -68,18 +68,16 @@ public class PlayerController : MonoBehaviour
         input.x = Input.GetAxisRaw("Horizontal");
         input.y = Input.GetAxisRaw("Vertical");
         input = input.normalized;
-    }
-
-    private void MoveSprite(float direction)
-    {
-        if(canMove)
+        
+        /*
+        if (Input.GetKey(KeyCode.LeftShift))
         {
-            rb.linearVelocity = new Vector2(direction * moveSpeed, rb.linearVelocity.y);
+
         }
-       
-
-
+        */
     }
+
+   
 
     private void SpriteControl()
     {
