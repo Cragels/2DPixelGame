@@ -1,9 +1,10 @@
 using UnityEngine;
+using UnityEngine.Splines;
 
 public class EnemyHealth : MonoBehaviour
 {
     Rigidbody2D rb;
-    float MaxHealth = 10f;
+    float MaxHealth = 4f;
     float Health;
 
     [SerializeField] FloatingHealthBar healthbar;
@@ -35,5 +36,30 @@ public class EnemyHealth : MonoBehaviour
     {
         //BossManager.isAlive = false;
         Destroy(transform.parent.gameObject);
+    }
+
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+
+        if (collision.gameObject.tag == "Enemy")
+        {
+            //if (isAlive)
+            //{
+
+                //isAlive = false;
+                //animator.SetTrigger("Dead");
+
+                // hitbox.enabled = false;
+               // rb.linearVelocity = Vector2.zero;
+               // rb.bodyType = RigidbodyType2D.Static;
+
+
+
+                //Invoke(nameof(FreezeAnimation), 2f);
+
+           // }
+
+            //DeactivateHitBox();
+        }
     }
 }
