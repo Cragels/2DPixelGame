@@ -12,22 +12,29 @@ public class PlayerController : MonoBehaviour
 
     float _move;
 
-    private bool canMove = true;
+    //private bool canMove = true;
 
     private bool isAlive = true;
 
+    [SerializeField]
     private SpriteRenderer spriteRenderer;
+    private bool facingRight = true;
 
     private PlayerHealth playerHealth;
 
     private float damageCooldown = 0.5f;  
     private float lastDamageTime;
 
+    private MeleeAttack meleeAttack;
+
+
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        meleeAttack = GetComponent<MeleeAttack>();
     }
     void Start()
     {
@@ -48,6 +55,8 @@ public class PlayerController : MonoBehaviour
     {
         HandleInput();
         SpriteControl();
+        
+        
         /*
         if (canMove)
         {
@@ -76,6 +85,7 @@ public class PlayerController : MonoBehaviour
         input.y = Input.GetAxisRaw("Vertical");
         input = input.normalized;
         
+
         /*
         if (Input.GetKey(KeyCode.LeftShift))
         {
@@ -84,9 +94,18 @@ public class PlayerController : MonoBehaviour
         */
     }
 
-   
-
-    private void SpriteControl()
+    private void SetFacing(bool faceRight)
+    {
+        if (facingRight != faceRight)
+        {
+            facingRight = faceRight;
+            Vector3 scale = transform.localScale;
+            scale.x = Mathf.Abs(scale.x) * (facingRight ? 1 : -1);
+            transform.localScale = scale;
+        }
+    }
+    /*
+    private void FlipSpriteOffMovement()
     {
         if (canMove)
         {
@@ -100,7 +119,7 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-
+    */
     public void OnCollisionEnter2D(Collision2D collision)
     {
 
@@ -139,5 +158,40 @@ public class PlayerController : MonoBehaviour
                 lastDamageTime = Time.time;
             }
         }
+    }
+    void FlipSpriteTowardMouse()
+    {
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        // Check if mouse is to the left or right of the player
+        if (mousePos.x < transform.position.x)
+        {
+            // Face left
+            transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+        }
+        else
+        {
+            // Face right
+            transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+        }
+    }
+
+    void SpriteControl()
+    {
+        if (meleeAttack.IsAttacking)
+        {
+            //FlipSpriteTowardMouse();
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            SetFacing(mousePos.x > transform.position.x);
+        }
+        
+        else
+        {
+            
+            float horizontal = Input.GetAxisRaw("Horizontal");
+            if (horizontal != 0)
+                SetFacing(horizontal > 0);
+        }
+            
     }
 }
