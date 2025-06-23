@@ -7,6 +7,11 @@ public class EnemyHealth : MonoBehaviour
     float MaxHealth = 4f;
     float Health;
 
+    public float swordDam = 3f;
+    public float bowDam = 3f;
+    public float hamDam = 4f;
+
+
     [SerializeField] FloatingHealthBar healthbar;
 
     private void Awake()
@@ -28,21 +33,22 @@ public class EnemyHealth : MonoBehaviour
         healthbar.UpdateHealthBar(Health, MaxHealth);
         if (Health <= 0)
         {
-            Destroy();
+            Die();
         }
     }
 
-    public void Destroy()
+    public void Die()
     {
         //BossManager.isAlive = false;
-        Destroy(transform.parent.gameObject);
+        Destroy(rb.gameObject);
     }
-
-    public void OnCollisionEnter2D(Collision2D collision)
+    
+    private void OnTriggerEnter2D(Collider2D collision)
     {
 
-        if (collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "pAttack")
         {
+            /*
             //if (isAlive)
             //{
 
@@ -60,6 +66,14 @@ public class EnemyHealth : MonoBehaviour
            // }
 
             //DeactivateHitBox();
+            */
+            TakeDamage(swordDam);
+
+        }
+        if(collision.gameObject.tag == "rAttack")
+        {
+            TakeDamage(bowDam);
         }
     }
+
 }

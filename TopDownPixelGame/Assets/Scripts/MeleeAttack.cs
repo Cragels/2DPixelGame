@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class MeleeAttack : MonoBehaviour
 {
@@ -12,9 +13,18 @@ public class MeleeAttack : MonoBehaviour
 
     public bool IsAttacking => isAttacking;
 
-    public float damage = 0;
+    public float damage = 0f;
 
+    [Header("Ranged Settings")]
+    public GameObject projectilePrefab;
+    public Transform firePoint;
+    public float projectileSpeed = 10f;
+    public float rangedCooldown = 4f;
+   
     
+    private bool canShoot = true;
+
+    //private static EnemyHealth enemyHealth;
 
     private void Update()
     {
@@ -30,11 +40,17 @@ public class MeleeAttack : MonoBehaviour
             StartCoroutine(PerformAttack());
             new WaitForSeconds(waitAttack);
         }
+        if (Input.GetMouseButtonDown(1) && canShoot)
+        {
+            FaceMouse();
+            StartCoroutine(PerformRangedAttack());
+            new WaitForSeconds(rangedCooldown);
+        }
 
-        
+
     }
 
-    private System.Collections.IEnumerator PerformAttack()
+    private IEnumerator PerformAttack()
     {
         isAttacking = true;
         attackSwing.SetActive(true);
@@ -53,6 +69,7 @@ public class MeleeAttack : MonoBehaviour
             {
                 Debug.Log("Hit: " + enemy.name);
                 // TODO: Deal damage
+                //enemyHealth.TakeDamage(damage);
             }
         }
 
@@ -71,6 +88,24 @@ public class MeleeAttack : MonoBehaviour
     }
     */
 
+    private IEnumerator PerformRangedAttack()
+    {
+        canShoot = false;
+
+        // Aim direction
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 direction = (mousePos - firePoint.position).normalized;
+
+        // Instantiate and shoot
+        GameObject projectile = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
+        Projectile prb = projectile.GetComponent<Projectile>();
+        prb.SetDirection(direction);
+
+        yield return new WaitForSeconds(rangedCooldown);
+        canShoot = true;
+    }
+
+
     private void FaceMouse()
     {
         Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -88,5 +123,7 @@ public class MeleeAttack : MonoBehaviour
         scale.x = Mathf.Abs(scale.x) * (direction.x < 0 ? -1 : 1);
         attackSwing.transform.localScale = scale;
     }
+
+    
 
 }
