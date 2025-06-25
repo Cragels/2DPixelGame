@@ -330,6 +330,7 @@ GameObject:
   - component: {fileID: 1421578773722536876}
   - component: {fileID: 9105557776413479772}
   - component: {fileID: 2892243945634825432}
+  - component: {fileID: -6044761351582447741}
   m_Layer: 10
   m_Name: Enemy
   m_TagString: Enemy
@@ -424,6 +425,7 @@ MonoBehaviour:
   Range: 15
   knockbackDuration: 0.2
   KnockbackForce: 8
+  AOEKnockbackForce: 10
 --- !u!50 &1421578773722536876
 Rigidbody2D:
   serializedVersion: 5
@@ -509,10 +511,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9c2611106d6e1d40be1384266a792a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swordDam: 2
+  MaxHealth: 6
+  swordDam: 0
   bowDam: 1
-  hamDam: 3
+  hamDam: 0
   healthbar: {fileID: 3152032046719793213}
+--- !u!114 &-6044761351582447741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7522401176381905389}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e8146b146c0ed44799a9efe78f694f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7816111846837594730
 GameObject:
   m_ObjectHideFlags: 0

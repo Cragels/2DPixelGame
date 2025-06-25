@@ -14,6 +14,8 @@ public class AIFollow : MonoBehaviour
     private float knockbackTimer = 0f;
     public float knockbackDuration = 0.2f;
     public float KnockbackForce = 5f;
+
+    public float AOEKnockbackForce = 5f;
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -95,7 +97,33 @@ public class AIFollow : MonoBehaviour
         if (other.CompareTag("pAttack"))
         {
             // Fix 1: Reset velocity
-            rb.linearVelocity = Vector2.zero;
+            //rb.linearVelocity = Vector2.zero;
+
+            // Fix 2: Use attack origin (not just player) for direction
+            Vector2 knockbackDir = (transform.position - other.transform.position).normalized;
+
+            rb.AddForce(knockbackDir * KnockbackForce, ForceMode2D.Impulse);
+
+            isKnockedBack = true;
+            knockbackTimer = knockbackDuration;
+        }
+        if (other.CompareTag("AOEattack"))
+        {
+            // Fix 1: Reset velocity
+            //rb.linearVelocity = Vector2.zero;
+
+            // Fix 2: Use attack origin (not just player) for direction
+            Vector2 knockbackDir = (transform.position - other.transform.position).normalized;
+
+            rb.AddForce(knockbackDir * AOEKnockbackForce, ForceMode2D.Impulse);
+
+            isKnockedBack = true;
+            knockbackTimer = knockbackDuration;
+        }
+        if (other.CompareTag("Shield"))
+        {
+            // Fix 1: Reset velocity
+            //rb.linearVelocity = Vector2.zero;
 
             // Fix 2: Use attack origin (not just player) for direction
             Vector2 knockbackDir = (transform.position - other.transform.position).normalized;

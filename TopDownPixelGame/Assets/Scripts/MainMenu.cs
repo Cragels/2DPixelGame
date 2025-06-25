@@ -3,10 +3,15 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+
     private string SettingsName = "SettingsMenu";
+    private PlayerController controller;
+
    public void PlayGame()
    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
+        SceneManager.LoadScene("Difficulty");
+        controller.isAlive = true;
    }
 
     public void QuitGame()

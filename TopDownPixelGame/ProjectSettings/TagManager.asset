@@ -9,6 +9,8 @@ TagManager:
   - Enemy
   - rAttack
   - Wall
+  - AOEattack
+  - Shield
   layers:
   - Default
   - TransparentFX

@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
 
     //private bool canMove = true;
 
-    private bool isAlive = true;
+    public bool isAlive = true;
 
     [SerializeField]
     private SpriteRenderer spriteRenderer;
@@ -26,6 +26,8 @@ public class PlayerController : MonoBehaviour
     private float lastDamageTime;
 
     private MeleeAttack meleeAttack;
+
+    public float enemyDMG = 2f;
 
 
 
@@ -47,14 +49,19 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (isAlive)
         rb.MovePosition(rb.position + input * moveSpeed * Time.fixedDeltaTime);
 
 
     }
     void Update()
     {
-        HandleInput();
-        SpriteControl();
+        if (isAlive)
+        {
+            HandleInput();
+            SpriteControl();
+        }
+        
         
         
         /*
@@ -129,7 +136,7 @@ public class PlayerController : MonoBehaviour
             if (isAlive)
             {
 
-                playerHealth.TakeDamage(2);
+                playerHealth.TakeDamage(enemyDMG);
                 lastDamageTime = Time.time;
 
                 //isAlive = false;

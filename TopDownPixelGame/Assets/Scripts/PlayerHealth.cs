@@ -3,11 +3,13 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
     Rigidbody2D rb;
-    float MaxHealth = 10f;
+    public float MaxHealth = 10f;
     float Health;
 
     [SerializeField] PlayerHealthBar playerHealthbar;
 
+    PlayerController controller;
+    MeleeAttack attack;
 
     private void Awake()
     {
@@ -29,14 +31,24 @@ public class PlayerHealth : MonoBehaviour
         playerHealthbar.UpdateHealthBar(Health, MaxHealth);
         if (Health <= 0)
         {
-           // Destroy();
+            Die();
 
         }
     }
 
-    public void Destroy()
+    public void Die()
     {
-        //BossManager.isAlive = false;
-        Destroy(transform.parent.gameObject);
+        controller.isAlive = false;
+        attack.canShoot = false;
+        attack.canUseAoe = false;
+        //attack.isAttacking = false;
+
+
+    }
+
+    public void ResetHealth()
+    {
+        Health = MaxHealth;
+
     }
 }

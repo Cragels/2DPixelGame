@@ -4,7 +4,7 @@ using UnityEngine.Splines;
 public class EnemyHealth : MonoBehaviour
 {
     Rigidbody2D rb;
-    float MaxHealth = 4f;
+    public float MaxHealth = 4f;
     float Health;
 
     public float swordDam = 3f;
