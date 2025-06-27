@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public enum GameDifficulty { Easy, Normal }
+public enum GameDifficulty { Easy, Normal,Hard }
 
 public class DifficultyManager : MonoBehaviour
 {
@@ -21,6 +21,14 @@ public class DifficultyManager : MonoBehaviour
     public float normalPlayerDamage = 2f;
     public float normalAOEDamage = 0.5f;
     public float normalPlayerHealth = 8f;
+
+
+    [Header("Hard Mode Settings")]
+    public float hardEnemyHealth = 8f;
+    public float hardEnemyDamage = 3f;
+    public float hardPlayerDamage = 1f;
+    public float hardAOEDamage = 0.25f;
+    public float hardPlayerHealth = 6f;
 
     private void Awake()
     {

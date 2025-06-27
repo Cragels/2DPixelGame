@@ -13,12 +13,14 @@ public class PlayerHealth : MonoBehaviour
 
     private void Awake()
     {
-
+        rb = GetComponent<Rigidbody2D>();
+        controller = GetComponent<PlayerController>(); // Initialize controller
+        attack = GetComponent<MeleeAttack>(); // Initialize attack
     }
 
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        //rb = GetComponent<Rigidbody2D>();
         //characterHealthbar = GetComponentInChildren<CharacterHealthBar>();
         Health = MaxHealth;
         //healthbar.UpdateHealthBar(Health, MaxHealth);

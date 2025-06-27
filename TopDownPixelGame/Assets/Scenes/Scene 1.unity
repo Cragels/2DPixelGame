@@ -4861,10 +4861,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e45fceb14336d24fb6cdaad3b0071d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Grey: {fileID: 0}
-  Panel: {fileID: 0}
-  timer: {fileID: 0}
-  duration: 1
 --- !u!4 &1982989818
 Transform:
   m_ObjectHideFlags: 0
@@ -5478,7 +5474,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7178990556809113425}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1e8146b146c0ed44799a9efe78f694f4, type: 3}
   m_Name: 

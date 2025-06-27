@@ -1,8 +1,38 @@
+using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class DifficultySelector : MonoBehaviour
 {
+    [SerializeField] private TMP_Dropdown difficultyDropdown;
+
+    private void Start()
+    {
+        // Set up the dropdown options
+       // difficultyDropdown.ClearOptions();
+        //difficultyDropdown.AddOptions(new List<string> { "Easy", "Normal", "Hard" });
+
+        // Set default value based on current difficulty
+        difficultyDropdown.value = (int)DifficultyManager.Instance.CurrentDifficulty;
+
+        // Add listener for when the dropdown value changes
+        difficultyDropdown.onValueChanged.AddListener(OnDifficultySelected);
+    }
+
+    private void OnDifficultySelected(int index)
+    {
+        // Convert the dropdown index to GameDifficulty enum
+        GameDifficulty selectedDifficulty = (GameDifficulty)index;
+        DifficultyManager.Instance.SetDifficulty(selectedDifficulty);
+    }
+
+    public void StartGame()
+    {
+        // Load your game scene
+        SceneManager.LoadScene("Scene 1");
+    }
 
     /*
     private EnemyHealth enemyHealth;
@@ -44,7 +74,7 @@ public class DifficultySelector : MonoBehaviour
         attack.damage = 3f;
         playerController.enemyDMG = 1f;
     }
-    */
+    
     public void SelectEasy()
     {
         DifficultyManager.Instance.SetDifficulty(GameDifficulty.Easy);
@@ -59,4 +89,10 @@ public class DifficultySelector : MonoBehaviour
         SceneManager.LoadScene("Scene 1");
     }
 
+    public void SelectHard()
+    {
+        DifficultyManager.Instance.SetDifficulty(GameDifficulty.Hard);
+        SceneManager.LoadScene("Scene 1");
+    }
+    */
 }

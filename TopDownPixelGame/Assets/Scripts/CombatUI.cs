@@ -1,11 +1,11 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
+//using TMPro;
 
 public class CombatUI : MonoBehaviour
 {
-    [SerializeField] private GameObject Grey;
+    /*[SerializeField] private GameObject Grey;
     [SerializeField] private GameObject Panel;
 
     public TextMeshProUGUI timer;
@@ -43,5 +43,5 @@ public class CombatUI : MonoBehaviour
 
         Grey.SetActive(false);
         Panel.SetActive(false);
-    }
+    }*/
 }
