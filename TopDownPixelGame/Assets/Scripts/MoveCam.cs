@@ -88,6 +88,7 @@ public class MoveCam : MonoBehaviour
 
     public void MoveTop()
     {
+        Debug.Log("MoveTop triggered");
         startPos = midPos;
         targetPos = topPos;
         Move();

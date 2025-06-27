@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class PlayerHealth : MonoBehaviour
 
     PlayerController controller;
     MeleeAttack attack;
+    public GameObject endPanel;
+    public GameObject uiPanel;
 
     private void Awake()
     {
@@ -43,6 +46,8 @@ public class PlayerHealth : MonoBehaviour
         controller.isAlive = false;
         attack.canShoot = false;
         attack.canUseAoe = false;
+        endPanel.SetActive(true);
+        uiPanel.SetActive(false);
         //attack.isAttacking = false;
 
 

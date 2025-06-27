@@ -9,11 +9,11 @@ public class AttackCooldownUI : MonoBehaviour
     public Image aoeCooldownImage;
     public Image shieldCooldownImage;
 
-    [Header("Optional Text Elements")]
-    public Text meleeCooldownText;
-    public Text rangedCooldownText;
-    public Text aoeCooldownText;
-    public Text shieldCooldownText;
+    //[Header("Optional Text Elements")]
+    //public Text meleeCooldownText;
+    //public Text rangedCooldownText;
+    //public Text aoeCooldownText;
+    //public Text shieldCooldownText;
 
     private MeleeAttack playerAttack;
 
@@ -53,16 +53,16 @@ public class AttackCooldownUI : MonoBehaviour
             if (meleeCooldownImage != null)
                 meleeCooldownImage.fillAmount = 1;
 
-            if (meleeCooldownText != null)
-                meleeCooldownText.text = "Attacking!";
+            //if (meleeCooldownText != null)
+              //  meleeCooldownText.text = "Attacking!";
         }
         else
         {
             if (meleeCooldownImage != null)
                 meleeCooldownImage.fillAmount = 0;
 
-            if (meleeCooldownText != null)
-                meleeCooldownText.text = "L Mouse";
+           // if (meleeCooldownText != null)
+               // meleeCooldownText.text = "L Mouse";
         }
     }
 
@@ -75,8 +75,8 @@ public class AttackCooldownUI : MonoBehaviour
             if (rangedCooldownImage != null)
                 rangedCooldownImage.fillAmount = cooldownProgress;
 
-            if (rangedCooldownText != null)
-                rangedCooldownText.text = Mathf.Ceil(playerAttack.rangedCooldownTimer).ToString();
+           // if (rangedCooldownText != null)
+              //  rangedCooldownText.text = Mathf.Ceil(playerAttack.rangedCooldownTimer).ToString();
 
             if (rangedCooldownImage != null)
                 rangedCooldownImage.color = Color.Lerp(readyColor, cooldownColor, 1 - cooldownProgress);
@@ -86,8 +86,8 @@ public class AttackCooldownUI : MonoBehaviour
             if (rangedCooldownImage != null)
                 rangedCooldownImage.fillAmount = 0;
 
-            if (rangedCooldownText != null)
-                rangedCooldownText.text = "R Mouse";
+            //if (rangedCooldownText != null)
+               // rangedCooldownText.text = "R Mouse";
 
             if (rangedCooldownImage != null && rangedCooldownImage.fillAmount > 0)
             {
@@ -107,8 +107,8 @@ public class AttackCooldownUI : MonoBehaviour
             if (aoeCooldownImage != null)
                 aoeCooldownImage.fillAmount = cooldownProgress;
 
-            if (aoeCooldownText != null)
-                aoeCooldownText.text = Mathf.Ceil(playerAttack.aoeCooldownTimer).ToString();
+            //if (aoeCooldownText != null)
+               // aoeCooldownText.text = Mathf.Ceil(playerAttack.aoeCooldownTimer).ToString();
 
             if (aoeCooldownImage != null)
                 aoeCooldownImage.color = Color.Lerp(readyColor, cooldownColor, 1 - cooldownProgress);
@@ -118,8 +118,8 @@ public class AttackCooldownUI : MonoBehaviour
             if (aoeCooldownImage != null)
                 aoeCooldownImage.fillAmount = 0;
 
-            if (aoeCooldownText != null)
-                aoeCooldownText.text = "Q";
+            //if (aoeCooldownText != null)
+                //aoeCooldownText.text = "Q";
 
             if (aoeCooldownImage != null && aoeCooldownImage.fillAmount > 0)
             {
@@ -139,8 +139,8 @@ public class AttackCooldownUI : MonoBehaviour
             if (shieldCooldownImage != null)
                 shieldCooldownImage.fillAmount = cooldownProgress;
 
-            if (shieldCooldownImage != null)
-                shieldCooldownText.text = Mathf.Ceil(playerAttack.shieldCooldownTimer).ToString();
+           // if (shieldCooldownImage != null)
+              //  shieldCooldownText.text = Mathf.Ceil(playerAttack.shieldCooldownTimer).ToString();
 
             if (shieldCooldownImage != null)
                 shieldCooldownImage.color = Color.Lerp(readyColor, cooldownColor, 1 - cooldownProgress);
@@ -150,8 +150,8 @@ public class AttackCooldownUI : MonoBehaviour
             if (shieldCooldownImage != null)
                 shieldCooldownImage.fillAmount = 0;
 
-            if (shieldCooldownText != null)
-                shieldCooldownText.text = "E";
+           // if (shieldCooldownText != null)
+            //    shieldCooldownText.text = "E";
 
             if (shieldCooldownImage != null && shieldCooldownImage.fillAmount > 0)
             {

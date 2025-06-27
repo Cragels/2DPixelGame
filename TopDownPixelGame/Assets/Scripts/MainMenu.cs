@@ -12,6 +12,10 @@ public class MainMenu : MonoBehaviour
     public GameObject QuitConfirmUi;
     public GameObject CreditUiMenu;
 
+    private void Start()
+    {
+        Debug.Log("MainMenu script initialized");
+    }
     public void PlayGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
